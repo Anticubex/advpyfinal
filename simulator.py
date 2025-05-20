@@ -199,6 +199,9 @@ class Factory:
         """
         Generates a utility matrix that represents the
         net item amounts from a given production ratio
+        where K * r = i, where K is the net matrix,
+        r is the production ratios vector, and i is the item
+        balances.
         """
 
         processes: List[EnumProc] = [
@@ -253,7 +256,7 @@ class Factory:
         a_ub = np.array(io_constraints)
         b_ub = np.zeros(len(io_constraints))
 
-        # Collect the rows of k that are balanced items into A_eq
+        # Collect the rows of k that are balanced-necessary items into A_eq
         a_eq = net_item_matrix[balanced_items]
         b_eq = np.zeros(len(balanced_items))
 
